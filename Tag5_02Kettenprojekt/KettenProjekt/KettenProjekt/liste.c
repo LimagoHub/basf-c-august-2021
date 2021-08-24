@@ -34,9 +34,12 @@ void liste_add(void* data)
 }
 void* liste_get()
 {
-	return NULL;
+	return liste_isEmpty() ? NULL: actual->daten;
 }
-bool liste_update(void* value){
+bool liste_update(void* value){ // Nur Wert im aktellen KG aktualisieren.. True wenn Ok False wenn Liste leer
+	if(liste_isEmpty())
+		return false;
+	actual->daten = value;
 	return true;
 }
 bool liste_remove() // Bitte nicht programmieren
@@ -46,18 +49,34 @@ bool liste_remove() // Bitte nicht programmieren
 
 bool liste_movePrevious()
 {
+	if(liste_isBOL())
+		return false;
+	actual = actual->vor;
 	return true;
 }
 bool liste_moveNext()
 {
+	if (liste_isEOL())
+		return false;
+	actual = actual->nach;
 	return true;
 }
 bool liste_moveFirst()
 {
+	if(liste_isEmpty())
+		return false;
+	
+	while(liste_movePrevious()) {}
+
 	return true;
 }
 bool liste_moveLast()
 {
+	if (liste_isEmpty())
+		return false;
+
+	while (liste_moveNext()) {}
+
 	return true;
 }
 

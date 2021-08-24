@@ -22,6 +22,8 @@ int main()
 	piggy->gewicht = 10;
 	liste_add(piggy);
 
+	Schwein* s = (Schwein*)liste_get();
+
 }
 
 
