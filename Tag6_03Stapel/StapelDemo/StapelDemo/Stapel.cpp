@@ -6,14 +6,25 @@ Stapel::Stapel(const size_t size):data(new int[size]),index(0),size_(size)
 {
 }
 
-Stapel::Stapel(const Stapel& other):data(new int[other.size_]), index(other.index), size_(other.size_)
+void Stapel::init(const Stapel& other)
 {
-	for (int i = 0; i < size_; ++i)
-	{
-		data[i] = other.data[i];
-	}
+	size_ = other.size_;
+	index = other.index;
+	data = new int[size_];
+	memcpy(data, other.data, sizeof(int) * size_);
+}
 
-	//memcpy(data, other.data, size_);
+Stapel::Stapel(const Stapel& other)
+{
+	init(other);
+	
+ }
+
+Stapel& Stapel::operator=(const Stapel& other)
+{
+	delete[] data;
+	init(other);
+	return *this;
 }
 
 
@@ -22,10 +33,10 @@ Stapel::~Stapel()
 	delete[] data;
 }
 
-void Stapel::push(const int value)
+void Stapel::push(const int value) 
 {
 	if (is_full())
-		return;
+		throw stapel_exception{"Overflow"};
 	
 	data[index++] = value;
 }
@@ -33,22 +44,24 @@ void Stapel::push(const int value)
 int Stapel::pop()
 {
 	if (is_empty())
-		return 0;
+		throw stapel_exception{ "Underflow" };
 
 	return data[--index];
 }
 
-bool Stapel::is_empty() const
+bool Stapel::is_empty() const noexcept
 {
 	return index <= 0;
 }
 
-bool Stapel::is_full() const
+bool Stapel::is_full() const noexcept
 {
 	return index >= size_;
 }
 
-size_t Stapel::size() const
+size_t Stapel::size() const noexcept
 {
 	return size_;
 }
+
+

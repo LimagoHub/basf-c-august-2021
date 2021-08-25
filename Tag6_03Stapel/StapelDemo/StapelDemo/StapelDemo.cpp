@@ -2,31 +2,36 @@
 #include "Stapel.h"
 int main()
 {
-	Stapel myStapel{5};
+	try {
+		Stapel myStapel{ 5 };
 
-	Stapel a;
+		Stapel a;
 
-	a = myStapel; // Zuweisung
+		a = myStapel; // Zuweisung
 
-	Stapel b{ myStapel }; // Erzeugung
-	
+		Stapel b{ myStapel }; // Erzeugung
 
-	for (int i = 0; i < myStapel.size(); ++i)
-	{
-		if( ! myStapel.is_full())
+
+		for (int i = 0; i < myStapel.size(); ++i)
 		{
-			myStapel.push(i * 10);
+			if (!myStapel.is_full())
+			{
+				myStapel.push(i * 10);
+			}
 		}
-	}
 
-	while( ! myStapel.is_empty())
+		while (!myStapel.is_empty())
+		{
+			std::cout << myStapel.pop() << std::endl;
+		}
+
+		myStapel.pop();
+
+		std::cout << "Hello World!\n";
+	} catch(const stapel_exception & e)
 	{
-		std::cout << myStapel.pop() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
-	
-	
-	
-    std::cout << "Hello World!\n";
 }
 
 

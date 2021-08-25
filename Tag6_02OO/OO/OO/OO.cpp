@@ -6,7 +6,7 @@
 #include "Schwein.h"
 
 using namespace std;
-
+using namespace basf::tiere;
 
 //Schwein frederick{ "frederick" };
 
@@ -25,7 +25,7 @@ int main()
 	
 	Schwein nobody = piggy + babe;
 
-	cout << nobody.get_gewicht() << endl;
+	cout << nobody << endl;
 }
 
 

@@ -21,6 +21,13 @@ void Punkt::set_y(double y)
 }
 
 
+std::ostream& operator<<(std::ostream& os, const Punkt& obj) {
+	return os
+		<< "x: " << obj.x
+		<< " y: " << obj.y;
+}
+
+
 
 double Punkt::get_x() const
 {

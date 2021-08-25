@@ -1,4 +1,6 @@
 #pragma once
+#include <ostream>
+
 class Punkt
 {
 private:
@@ -16,8 +18,11 @@ public:
 	void links();
 	void oben();
 	void unten();
-	
+
+	friend std::ostream& operator<<(std::ostream& os, const Punkt& obj);
 };
+
+
 
 // Preincrement und postincrement ++p und p++ ( x und y um 1 erhöhen)
 // p += value ( x und y um value erhöhen)

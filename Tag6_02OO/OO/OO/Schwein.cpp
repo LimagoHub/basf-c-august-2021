@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Schwein.h"
 
+using namespace basf::tiere;
 
 int Schwein::counter = 0;
 
@@ -74,8 +75,17 @@ Schwein& Schwein::operator+=(int anzahlKartoffeln)
 
 Schwein operator+(const Schwein& a, const Schwein& b)
 {
-	Schwein result;
+	Schwein result{};
 	result.set_gewicht(a.get_gewicht() + b.get_gewicht());
 	return result;
+}
+
+std::ostream& operator<<(std::ostream &out, const Schwein& schweinToPrint)
+{
+	out << "Schwein: Name=";
+	out << schweinToPrint.get_name();
+	out << ", Gewicht=";
+	out << schweinToPrint.get_gewicht();
+	return out;
 }
 

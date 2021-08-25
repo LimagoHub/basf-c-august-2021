@@ -1,43 +1,53 @@
 #pragma once
-#include <string> 
-class Schwein
-{
-	friend Schwein operator + (const Schwein& a, const Schwein& b);
-private:
-	// Instanzvariablen
-	std::string name;
-	int gewicht;
+#include <ostream>
+#include <string>
 
-	// Klassenvariablen
-	static int counter;
+namespace basf {
+	namespace tiere {
 
-	void set_gewicht(const int gewicht);
-public:
+		class Schwein
+		{
+			friend Schwein operator + (const Schwein& a, const Schwein& b);
+		private:
+			// Instanzvariablen
+			std::string name;
+			int gewicht;
 
-	static int get_counter() ;
+			// Klassenvariablen
+			static int counter;
+		
 
-	Schwein(std::string name = "nobody");
-	Schwein(const Schwein& other) ;
+		public:
+			void set_gewicht(const int gewicht);
+			static int get_counter();
 
-	//Schwein(const Schwein& other) = delete;
-	
-	~Schwein();
-	
-	std::string get_name() const;
+			Schwein(std::string name = "nobody");
+			Schwein(const Schwein& other);
 
-	void set_name(const std::string& name);
+			//Schwein(const Schwein& other) = delete;
 
-	int get_gewicht() const;
+			~Schwein();
 
-	void fressen();
+			std::string get_name() const;
 
-	Schwein & operator ++ (); // Preincrement
-	Schwein operator ++ (int dummy); // Postincrement (Parameter ist nur Kennzeichen für den Kompiler
-	Schwein& operator +=(int anzahlKartoffeln);
-	
-	
-};
+			void set_name(const std::string& name);
+
+			int get_gewicht() const;
+
+			void fressen();
+
+			Schwein& operator ++ (); // Preincrement
+			Schwein operator ++ (int dummy); // Postincrement (Parameter ist nur Kennzeichen für den Kompiler
+			Schwein& operator +=(int anzahlKartoffeln);
 
 
-Schwein operator + (const Schwein& a, const Schwein& b);
+		};
 
+
+
+
+
+
+		std::ostream& operator<<(std::ostream& out, const Schwein& schweinToPrint);
+	}
+}
